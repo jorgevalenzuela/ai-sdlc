@@ -39,4 +39,4 @@ This is a working draft, evolving in public. Versioning follows SemVer; the targ
 
 ## License
 
-Recommended: **CC BY 4.0** (attribution) — pending confirmation. *(Standard license text to be added.)* Code components in the wider ecosystem carry their own code licenses.
+Licensed under **CC BY 4.0** (Creative Commons Attribution 4.0 International) — see [`LICENSE`](./LICENSE). Use, adapt, and share with attribution. Code components in the wider ecosystem carry their own code licenses.

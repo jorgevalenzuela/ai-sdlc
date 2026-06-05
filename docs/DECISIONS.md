@@ -134,7 +134,23 @@ This document is the running record of the significant engineering decisions mad
 - **Consequences:** Every entry now shows human accountability explicitly, protecting the provenance of the framework itself for public release. First use of the `Supersedes` link — which surfaces a likely future need to distinguish *amends* (partial change) from *supersedes* (full replacement); parked as a candidate for v0.2.0 schema work. P-019 clears the principle-graduation criterion (it operationalizes P-014/P-018 and resolves a recurring failure mode).
 - **Outcome:** — pending
 - **Lesson Learned:** — pending
+---
 
+## DEC-AISDLC-007 — License the public release under CC BY 4.0
+
+- **Project:** AI-SDLC Framework
+- **Status:** Accepted
+- **Decided by:** Jorge Valenzuela
+- **Drafted by:** Claude
+- **Date:** 2026-06-05
+- **AI Suggested:** Y
+- **AI Suggestion Disposition:** Accepted
+- **Context:** v0.1.0 shipped with the LICENSE marked "pending." The framework is documentation (code lives in its own repos), built in public, with teaching and consulting ambitions — the public release needed explicit legal terms.
+- **Decision:** License the AI-SDLC framework under Creative Commons Attribution 4.0 International (CC BY 4.0). Finalized in v0.1.1.
+- **Alternatives Considered:** (a) CC BY-SA 4.0 (copyleft) — rejected: no need to force derivatives open, adds adopter friction. (b) A Non-Commercial variant — rejected: would collide with the framework's own consulting/teaching use. (c) A code license (MIT/Apache) — rejected: wrong tool for documentation.
+- **Consequences:** Anyone may use, adapt, and commercialize with attribution — maximizing adoption and operationalizing P-019 at the legal layer. Code components remain separately licensed.
+- **Outcome:** — pending
+- **Lesson Learned:** — pending
 ---
 
 ## Glossary

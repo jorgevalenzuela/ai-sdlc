@@ -2,6 +2,12 @@
 
 All notable changes to the AI-SDLC Framework are documented here. Format follows [Keep a Changelog](https://keepachangelog.com); versioning follows [SemVer](https://semver.org).
 
+
+## [0.1.1] — 2026-06-05
+
+### Changed
+- Finalized the license: Creative Commons Attribution 4.0 International (CC BY 4.0), replacing the pending placeholder from v0.1.0 (DEC-AISDLC-007).
+
 ## [0.1.0] — 2026-06-05
 
 Initial public working draft (build-in-public).
