@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+._*
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*~
+
+# Derived exports — markdown is the source of truth; generated PDF/DOCX/HTML
+# exports are build artifacts, not committed (see README, "single source of truth")
+/exports/
+/dist/
+
+# Secrets / local env — for the export pipeline and future tooling scripts
+.env
+.env.*
+!.env.example
+
+# Node tooling — arrives with v0.2.0+ (export scripts, DIS ingestion); harmless now
+node_modules/
+*.log
+
+# Claude Code — keep CLAUDE.md if you add one; ignore machine-local settings
+.claude/settings.local.json
