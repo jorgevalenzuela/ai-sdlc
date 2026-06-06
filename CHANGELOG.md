@@ -5,6 +5,12 @@ All notable changes to the AI-SDLC Framework are documented here. Format follows
 ## [Unreleased]
 
 ### Added
+- Requirement-admission bar in `FRAMEWORK.md` §4 — necessity is checked when a requirement enters the SRS, not as a quality attribute; deliberate IEEE 29148 divergence (DEC-AISDLC-011).
+
+### Changed
+- Reworded the Traceable quality criterion to be bidirectional — origin plus a forward-traceable ID (DEC-AISDLC-011).
+
+### Added
 - Principle-graduation criterion in `FRAMEWORK.md` §6 — the bar a candidate clears to become a numbered principle (DEC-AISDLC-008).
 - Four principles promoted from candidate to adopted: P-017, P-018, P-019, P-020 (DEC-AISDLC-009).
 

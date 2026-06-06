@@ -33,7 +33,11 @@ Phases 0 and 3 happen once. Phases 1, 2, 4, 5, 6 repeat every iteration. Design 
 | Bug fix | Not required | Not required | PATCH bump (e.g. 1.1.0 → 1.1.1) |
 | Breaking change | Full re-elicitation | Significant redesign | MAJOR bump (e.g. 1.x.x → 2.0.0) |
 
-## 4. Requirements quality criteria
+## 4. Requirements
+
+A requirement faces two separate questions: *is it well-formed?* (quality) and *does it belong in the contract?* (admission). AI-SDLC keeps them apart.
+
+### Quality criteria — is it well-formed?
 
 Every requirement must satisfy all of the following. Flag any violation before proceeding to design.
 
@@ -41,10 +45,22 @@ Every requirement must satisfy all of the following. Flag any violation before p
 |-----------|------------|---------------|
 | Unique | No two requirements say the same thing | Does any other requirement cover this? |
 | Testable | Verifiable through testing or inspection | How would I prove this works? |
-| Traceable | Linked back to a use case or business need | Which use case does this come from? |
+| Traceable | Origin and path are explicit — the requirement traces back to the use case or need it came from, and carries a stable ID that later artifacts (design, code, tests) can trace forward to | What's its origin, and can I follow its trace both ways — back to the need, forward to what implements it? |
 | Unambiguous | Only one interpretation possible | Could two developers implement this differently? |
 | Feasible | Achievable within project constraints | Can we build this in this iteration? |
 | Complete | No missing details that block implementation | Does a developer have everything needed? |
+
+These mirror IEEE 29148, with one deliberate exception: AI-SDLC does **not** treat "Necessary" as a quality attribute. Because the SRS is a contract of what will be built, necessity is checked at admission (below), not as a per-requirement quality property.
+
+### Admission — does it enter the SRS?
+
+The SRS is a contract: everything in it is committed to be built this iteration. A candidate requirement is *admitted* when it —
+
+1. **traces to a real stakeholder need** (genuine need, not gold-plating),
+2. **is committed to be built this iteration** (P-015 — just enough), and
+3. **passes the quality criteria above.**
+
+A real need you're not building yet isn't rejected — it's a backlog item, admitted in a later iteration when you commit to it. In-SRS ⇒ being built; the contract stays honest. *(This mirrors the principle-graduation bar in §6 — a gate before something enters the canon.)*
 
 ## 5. Decision management
 
