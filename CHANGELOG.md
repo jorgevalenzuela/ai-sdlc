@@ -2,6 +2,15 @@
 
 All notable changes to the AI-SDLC Framework are documented here. Format follows [Keep a Changelog](https://keepachangelog.com); versioning follows [SemVer](https://semver.org).
 
+## [Unreleased]
+
+### Added
+- Principle-graduation criterion in `FRAMEWORK.md` §6 — the bar a candidate clears to become a numbered principle (DEC-AISDLC-008).
+- Four principles promoted from candidate to adopted: P-017, P-018, P-019, P-020 (DEC-AISDLC-009).
+
+### Changed
+- Reorganized `PRINCIPLES.md` into a chronological index plus seven thematic sections (DEC-AISDLC-010).
+- Generalized the wording of P-006, P-009, P-010, and P-011 beyond their original domains (DEC-AISDLC-010).
 
 ## [0.1.1] — 2026-06-05
 

@@ -1,6 +1,6 @@
 # AI-SDLC — Framework
 
-`docs/FRAMEWORK.md` · AI-SDLC Framework · v0.1.0
+`docs/FRAMEWORK.md` · AI-SDLC Framework · v0.2.0
 
 ## 1. What is AI-SDLC?
 
@@ -56,7 +56,20 @@ The canonical record format is **DEC-NNN** (defined in [`DECISIONS.md`](./DECISI
 
 IDs use a per-project prefix (e.g. `AISDLC-001`, `DIS-001`).
 
-## 6. Branching & SemVer
+## 6. How principles are adopted
+
+Principles are not declared; they graduate from practice (P-001). Phase 6 (Reflect) is where lessons from real decisions become candidate principles — but a candidate has to clear a bar before it gets a number.
+
+A candidate is **adopted** when — drawn from at least one real instance in practice, and not a restatement of an existing principle — it either:
+
+- **unifies** two or more existing principles under a higher-order truth they're both instances of (a parent thesis — e.g. P-018 over P-003 + P-014), or
+- **resolves a recurring decision or failure mode**.
+
+Two moves are deliberately *not* graduation: if a principle reads unclearly, **reword it** (maintenance); if it's doing two jobs, **split it** (refactoring). Both change an existing principle rather than minting a new one.
+
+Once adopted, a principle takes the next chronological number (immutable identity) and slots into whatever thematic section fits (see [`PRINCIPLES.md`](./PRINCIPLES.md)).
+
+## 7. Branching & SemVer
 
 | Branch | Purpose |
 |--------|---------|
@@ -66,7 +79,7 @@ IDs use a per-project prefix (e.g. `AISDLC-001`, `DIS-001`).
 
 Release sequence per iteration: merge feature → develop → push → merge develop → main → push → tag SemVer → push tag → return to develop.
 
-> **Under revision (v0.2.0):** branch *topology* is a project-level choice, not a framework prescription — the framework requires SemVer, that you branch, and tag-before-transform (P-011), but not a specific topology. See `DECISIONS.md`, DEC-AISDLC-004. The table above is retained as the current default until P-017 is reworded in v0.2.0.
+> **Note (P-017):** branch *topology* is a project-level choice, not a framework prescription — the framework requires SemVer, that you branch, and tag-before-transform (P-011), but not a specific topology (DEC-AISDLC-004). P-017 now splits shared **conventions** from project **implementations**, and topology is an implementation. The table above is a default *example*, not a mandate.
 
 | Version | When | Example |
 |---------|------|---------|
@@ -76,4 +89,4 @@ Release sequence per iteration: merge feature → develop → push → merge dev
 
 ---
 
-*AI-SDLC Framework · `docs/FRAMEWORK.md` · v0.1.0 · Principles in [`PRINCIPLES.md`](./PRINCIPLES.md) · Decisions in [`DECISIONS.md`](./DECISIONS.md)*
+*AI-SDLC Framework · `docs/FRAMEWORK.md` · v0.2.0 · Principles in [`PRINCIPLES.md`](./PRINCIPLES.md) · Decisions in [`DECISIONS.md`](./DECISIONS.md)*

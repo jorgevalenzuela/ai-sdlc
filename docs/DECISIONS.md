@@ -153,6 +153,59 @@ This document is the running record of the significant engineering decisions mad
 - **Lesson Learned:** — pending
 ---
 
+## DEC-AISDLC-008 — Adopt the principle-graduation criterion
+
+- **Project:** AI-SDLC Framework
+- **Status:** Accepted
+- **Decided by:** Jorge Valenzuela
+- **Drafted by:** Claude
+- **Date:** 2026-06-06
+- **AI Suggested:** Y
+- **AI Suggestion Disposition:** Modified
+- **Context:** P-001 says principles are extracted from practice, but there was no stated bar for when a candidate becomes a numbered principle (audit gap; risk of principle inflation as the framework grows in public).
+- **Decision:** A candidate is adopted when — drawn from ≥1 real instance (P-001), and not a restatement — it either unifies two or more existing principles under a higher-order truth, or resolves a recurring decision/failure mode. Rewording an unclear principle (maintenance) and splitting a two-job principle (refactoring) are explicitly *not* graduation. Recorded in FRAMEWORK.md §6.
+- **Alternatives Considered:** (a) No explicit bar — rejected: invites inflation. (b) Include "explains an existing principle" as a third path — rejected (Jorge): if a new principle is needed to explain an old one, the old one is unclear and should be reworded, not supplemented.
+- **Consequences:** Promotion is no longer arbitrary; gives a repeatable test others can apply. Separates graduation from maintenance/refactoring.
+- **Outcome:** — pending
+- **Lesson Learned:** — pending
+
+---
+
+## DEC-AISDLC-009 — Adopt P-017, P-018, P-019, P-020
+
+- **Project:** AI-SDLC Framework
+- **Status:** Accepted
+- **Decided by:** Jorge Valenzuela
+- **Drafted by:** Claude
+- **Date:** 2026-06-06
+- **AI Suggested:** Y
+- **AI Suggestion Disposition:** Modified
+- **Context:** Four candidates carried from the kickoff and this session were ready to promote once the graduation bar was set (DEC-008).
+- **Decision:** Promote all four to numbered principles (count 16 → 20). P-017 reworded to split convention from implementation (completing the amendment deferred in DEC-004); P-018 tightened; P-019 settled in DEC-006; P-020 newly adopted. Provenance: P-017/018/019 were AI-surfaced from the audit and reworked under review; **P-020 was originated by Jorge** (the velocity/pacing observation), drafted by Claude.
+- **Alternatives Considered:** (a) Keep them as candidates longer — rejected: each clears the bar and is already practiced. (b) Adopt individually across versions — rejected: they form one coherent v0.2.0 set.
+- **Consequences:** The human–AI thesis (P-018) and the accountability/pacing discipline (P-019/P-020) are now first-class. P-017's reword obligates the convention-vs-implementation boundary everywhere.
+- **Outcome:** — pending
+- **Lesson Learned:** — pending
+
+---
+
+## DEC-AISDLC-010 — Reorganize PRINCIPLES.md into thematic sections; generalize four principles
+
+- **Project:** AI-SDLC Framework
+- **Status:** Accepted
+- **Decided by:** Jorge Valenzuela
+- **Drafted by:** Claude
+- **Date:** 2026-06-06
+- **AI Suggested:** Y
+- **AI Suggestion Disposition:** Modified
+- **Context:** The flat 20-principle list was hard to read by theme, and four principles carried domain-specific wording narrower than their underlying truth.
+- **Decision:** Reorganize PRINCIPLES.md into a chronological index plus 7 thematic sections (numbers = identity, sections = reading aid; cross-cutting principles housed once with cross-references, single source of truth). Generalize-reword P-006, P-009 ("Match the Mechanism to Domain Stability"), P-010 ("invested in"), P-011 ("any significant change"). Maintenance/presentation, not new principles (per DEC-008).
+- **Alternatives Considered:** (a) Keep the flat list — rejected: doesn't scale. (b) Duplicate cross-cutting principles per section — rejected: reintroduces the multi-copy drift problem (DEC-001 / P-017).
+- **Consequences:** Principles are navigable by theme without losing chronological identity. Rewords broaden applicability; origin notes keep them grounded (P-001).
+- **Outcome:** — pending
+- **Lesson Learned:** — pending
+---
+
 ## Glossary
 
 - **DEC-NNN** — a single decision record; NNN is a per-project, zero-padded sequence (e.g., `AISDLC-001`).
