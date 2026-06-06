@@ -16,14 +16,15 @@ This document is the running record of the significant engineering decisions mad
 ## Conventions
 
 - **ID** — per-project prefix + zero-padded sequence. Registered prefixes: `AISDLC`, `DIS`, `REVIQO`, `OOPTW`.
-- **Status** — Proposed · Accepted · Rejected · Superseded
+- **Status** — Proposed · Accepted · Rejected · Deferred · Superseded
 - **Decided by** — the human (or team) with authority and accountability for the decision.
 - **Drafted by** — who composed the entry text (may be Claude, the human, or both).
 - **AI Suggested** — Y / N (did the decision *content* originate with AI?)
 - **AI Suggestion Disposition** — Accepted · Modified · Rejected · N/A
+- **Supersedes** *(optional)* — the DEC this one fully replaces; the prior decision's Status becomes Superseded.
+- **Amends** *(optional)* — the DEC this one partially changes; the prior decision stays in force, annotated "Amended by …".
 
-**Decision lifecycle.** A decision is *made* now (Status: Proposed → Accepted/Rejected). Its **Outcome** is recorded later, once it's built (Phase 4, Development); its **Lesson Learned** is recorded at Phase 6 (Reflect). Until then those two fields read `— pending`, which is itself useful: it marks a decision as made but not yet validated in practice.
-
+**Decision lifecycle.** A decision is *made* now (Status: Proposed → Accepted/Rejected), or **Deferred** if it's been framed but consciously postponed until its trigger arrives. Its **Outcome** is recorded later, once it's built (Phase 4, Development); its **Lesson Learned** is recorded at Phase 6 (Reflect). Until then those two fields read `— pending`, which is itself useful: it marks a decision as made but not yet validated in practice.
 ---
 
 ## DEC-AISDLC-001 — Canonical DEC-NNN decision schema
@@ -127,7 +128,7 @@ This document is the running record of the significant engineering decisions mad
 - **Date:** 2026-06-05
 - **AI Suggested:** Y
 - **AI Suggestion Disposition:** Accepted
-- **Supersedes:** AISDLC-001 *(authorship convention only)*
+- **Amends:** AISDLC-001 *(authorship convention)*
 - **Context:** Jorge noticed that every DEC entry recorded "Author: Claude," which read as though Claude autonomously produced the decisions — and, scaled up, the framework itself — erasing the human who initiated, judged, and owned each call. This contradicts P-014 (the human brings accountability) and P-018 (evaluation is the human's value): the framework's own records were crediting only the AI producer. The catch itself was an instance of P-018 — the human evaluating and correcting AI output.
 - **Decision:** Adopt **P-019 — Keep the Human Visible** (candidate, v0.2.0): a decision record must name the accountable human, not just the artifact's drafter; provenance is part of the decision. As its first operationalization, amend the DEC-NNN schema (DEC-AISDLC-001) to replace the single `Author` field with `Decided by` (the accountable human/team) and `Drafted by` (who composed the record). `AI Suggested` + `AI Suggestion Disposition` are retained to capture idea origin and the human's response.
 - **Alternatives Considered:** (a) Keep `Author` and rely on `AI Suggested` to imply human involvement — rejected: a reader still sees "Author: Claude" and misattributes ownership. (b) Add only `Decided by` and drop drafter tracking — rejected: loses the real, useful record of who did the drafting labor.
@@ -202,6 +203,43 @@ This document is the running record of the significant engineering decisions mad
 - **Decision:** Reorganize PRINCIPLES.md into a chronological index plus 7 thematic sections (numbers = identity, sections = reading aid; cross-cutting principles housed once with cross-references, single source of truth). Generalize-reword P-006, P-009 ("Match the Mechanism to Domain Stability"), P-010 ("invested in"), P-011 ("any significant change"). Maintenance/presentation, not new principles (per DEC-008).
 - **Alternatives Considered:** (a) Keep the flat list — rejected: doesn't scale. (b) Duplicate cross-cutting principles per section — rejected: reintroduces the multi-copy drift problem (DEC-001 / P-017).
 - **Consequences:** Principles are navigable by theme without losing chronological identity. Rewords broaden applicability; origin notes keep them grounded (P-001).
+- **Outcome:** — pending
+- **Lesson Learned:** — pending
+
+---
+
+## DEC-AISDLC-011 — Requirements: bidirectional Traceable; necessity via SRS admission, not a quality criterion
+
+- **Project:** AI-SDLC Framework
+- **Status:** Accepted
+- **Decided by:** Jorge Valenzuela
+- **Drafted by:** Claude
+- **Date:** 2026-06-06
+- **AI Suggested:** N
+- **AI Suggestion Disposition:** N/A
+- **Context:** Reviewing the Phase-1 requirements model: (1) "Traceable" was a one-hop backward link, underselling traceability as origin + path; (2) a proposal to add "Necessary" as a 7th quality criterion (per IEEE 29148) was rejected — since the SRS is a contract of what will be built, "is this needed?" is a scope/admission question, not a property of how a requirement is written, and bundling it as a quality attribute risks necessary-but-uncommitted requirements sitting in the contract.
+- **Decision:** (a) Reword Traceable to bidirectional — origin and path explicit, with a stable ID later artifacts trace forward to. (b) Do not adopt "Necessary" as a quality criterion (criteria stay at six). (c) Add a requirement-admission bar (Phase 1): the SRS holds only what's committed to be built this iteration; a candidate is admitted when it traces to a real need, is committed this iteration (P-015), and passes the quality criteria. (d) State the deliberate IEEE 29148 divergence in §4.
+- **Alternatives Considered:** (a) Add "Necessary" as the 7th quality criterion (textbook IEEE) — rejected: it's an admission gate, not a quality attribute; SRS-as-contract makes the conflation harmful. (b) Keep Traceable backward-only — rejected: undersells traceability and breaks the forward ID-tracing the Code Brief relies on.
+- **Consequences:** Necessity is enforced where it belongs (the gate), keeping the SRS an honest contract; real-but-deferred needs live in the backlog until committed. Mirrors the principle-graduation bar (P-017 — same gate pattern). Diverges from IEEE 29148's flat quality list, stated explicitly so it reads as a choice.
+- **Outcome:** — pending
+- **Lesson Learned:** — pending
+
+---
+
+## DEC-AISDLC-012 — DEC schema: add a `Deferred` status and an `Amends` relation
+
+- **Project:** AI-SDLC Framework
+- **Status:** Accepted
+- **Decided by:** Jorge Valenzuela
+- **Drafted by:** Claude
+- **Date:** 2026-06-06
+- **AI Suggested:** Y
+- **AI Suggestion Disposition:** Accepted
+- **Amends:** AISDLC-001 *(status enum + decision relations)*
+- **Context:** Two gaps surfaced while *using* the schema. (1) Status had no value for a decision framed but consciously postponed — DEC-004 had to wedge a "Parked" note into its Decision field. (2) The schema had only `Supersedes` (full replacement), but DEC-006 used it for a *partial* change (it swapped DEC-001's `Author` field for `Decided by`/`Drafted by` while the rest of DEC-001 stood) — an amendment mislabeled as a replacement.
+- **Decision:** Amend the canonical schema (DEC-001): (a) add **`Deferred`** to the Status enum — a decision framed but postponed until its trigger; (b) add an **`Amends`** relation (partial change; prior decision stays in force, annotated "Amended by …") distinct from **`Supersedes`** (full replacement; prior → Superseded). Retro-correct DEC-006's link from `Supersedes` to `Amends`. This entry is the first use of the new `Amends` relation — the same dogfooding as DEC-001 being written in its own schema.
+- **Alternatives Considered:** (a) Keep overloading `Supersedes` for partial changes — rejected: loses the distinction between "this old decision is obsolete" and "this old decision still stands, one part changed." (b) Skip `Deferred`, keep wedging parked notes into prose — rejected: a lifecycle state deserves a status, not a comment.
+- **Consequences:** Parked decisions and partial amendments get first-class representation; the supersede-chain stays meaningful (only true replacements mark a prior decision obsolete). Costs one more status value and one optional relation to learn.
 - **Outcome:** — pending
 - **Lesson Learned:** — pending
 ---

@@ -3,6 +3,7 @@
 All notable changes to the AI-SDLC Framework are documented here. Format follows [Keep a Changelog](https://keepachangelog.com); versioning follows [SemVer](https://semver.org).
 
 ## [Unreleased]
+- Extended the DEC-NNN schema: added a `Deferred` status and an `Amends` relation distinct from `Supersedes`; corrected DEC-006's link to `Amends` (DEC-AISDLC-012).
 
 ### Added
 - Requirement-admission bar in `FRAMEWORK.md` §4 — necessity is checked when a requirement enters the SRS, not as a quality attribute; deliberate IEEE 29148 divergence (DEC-AISDLC-011).
