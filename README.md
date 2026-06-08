@@ -2,7 +2,7 @@
 
 *An AI-augmented software development lifecycle — built in public.*
 
-**Status:** v0.1.0 · working draft · build-in-public
+**Status:** v0.2.0 · working draft · build-in-public
 **Author:** Jorge Valenzuela, Ph.D. — Computer Science Professor & Software Engineer
 *Framework authored from real project practice (P-001). Documentation drafted with AI assistance (Claude), decided and owned by the author (P-019).*
 
@@ -16,14 +16,15 @@ AI-SDLC is a structured software development lifecycle for AI-assisted projects.
 
 > The core insight: **AI removes engineering friction. AI-SDLC restores it deliberately.** (P-003)
 
-It defines 7 phases (Vision → Requirements → Design → Setup → Development → Release → Reflect), 16 principles extracted from practice, requirements quality criteria, and a decision-tracking format — all designed so that what you hand to AI is a precise engineering artifact, not a vague description (P-012).
+It defines a lifecycle of 9 phases (Vision → Requirements → Design → Project Configuration → Development → Testing → Release → Deployment → Reflect) — each traversed every iteration and right-sized, not run once — 21 principles extracted from practice, requirements quality criteria, and a decision-tracking format — all designed so that what you hand to AI is a precise engineering artifact, not a vague description (P-012).
 
 ## Repository contents
 
-- [`docs/FRAMEWORK.md`](./docs/FRAMEWORK.md) — the 7 phases, iterative model, quality criteria, decision management, branching & SemVer
-- [`docs/PRINCIPLES.md`](./docs/PRINCIPLES.md) — the 16 principles, each with its origin
+- [`docs/FRAMEWORK.md`](./docs/FRAMEWORK.md) — the lifecycle (9 phases and their elements), iteration model, requirements, decision management, branching & SemVer, and glossary
+- [`docs/PRINCIPLES.md`](./docs/PRINCIPLES.md) — the 21 principles, each with its origin
 - [`docs/DECISIONS.md`](./docs/DECISIONS.md) — the framework's own decision log (DEC-NNN format)
 - [`CHANGELOG.md`](./CHANGELOG.md) — release history, tied to SemVer
+- [`BACKLOG.md`](./BACKLOG.md) — parked candidates and planned work
 
 ## Using it with Claude
 
@@ -35,7 +36,7 @@ Claude then follows the phases, applies the principles, elicits requirements aga
 
 ## Status & versioning
 
-This is a working draft, evolving in public. Versioning follows SemVer; the target is **v1.0.0** as the first stable public release. Candidate principles and in-flight decisions (e.g. P-017/18/19) are recorded in [`docs/DECISIONS.md`](./docs/DECISIONS.md) and promoted into the framework at tagged releases — the *edge* version carries candidates, the *released* version is what's meant for adoption.
+This is a working draft, evolving in public. Versioning follows SemVer; the target is **v1.0.0** as the first stable public release. Candidate principles and in-flight decisions (e.g. the parked "Credit Follows Origination" candidate) are recorded in [`docs/DECISIONS.md`](./docs/DECISIONS.md) and [`BACKLOG.md`](./BACKLOG.md), and promoted into the framework at tagged releases — the *edge* version carries candidates, the *released* version is what's meant for adoption.
 
 ## License
 

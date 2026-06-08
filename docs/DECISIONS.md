@@ -1,6 +1,6 @@
 # AI-SDLC — Decision Log
 
-`docs/DECISIONS.md` · AI-SDLC Framework · v0.1.0
+`docs/DECISIONS.md` · AI-SDLC Framework · v0.2.0
 
 ## Purpose
 
@@ -24,7 +24,7 @@ This document is the running record of the significant engineering decisions mad
 - **Supersedes** *(optional)* — the DEC this one fully replaces; the prior decision's Status becomes Superseded.
 - **Amends** *(optional)* — the DEC this one partially changes; the prior decision stays in force, annotated "Amended by …".
 
-**Decision lifecycle.** A decision is *made* now (Status: Proposed → Accepted/Rejected), or **Deferred** if it's been framed but consciously postponed until its trigger arrives. Its **Outcome** is recorded later, once it's built (Phase 4, Development); its **Lesson Learned** is recorded at Phase 6 (Reflect). Until then those two fields read `— pending`, which is itself useful: it marks a decision as made but not yet validated in practice.
+**Decision lifecycle.** A decision is *made* now (Status: Proposed → Accepted/Rejected), or **Deferred** if it's been framed but consciously postponed until its trigger arrives. Its **Outcome** is recorded later, once it's built (Phase 4, Development); its **Lesson Learned** is recorded at Phase 8 (Reflect). Until then those two fields read `— pending`, which is itself useful: it marks a decision as made but not yet validated in practice.
 ---
 
 ## DEC-AISDLC-001 — Canonical DEC-NNN decision schema
@@ -40,7 +40,7 @@ This document is the running record of the significant engineering decisions mad
 - **AI Suggestion Disposition:** Accepted
 - **Context:** Two divergent decision-record field sets existed — Context Document §5 and the Project-Instructions DEC-NNN spec — violating P-002 (decisions are structured data, but the structure had two definitions) and P-017 (consistency across the ecosystem). This entry is recorded in the very schema it defines.
 - **Decision:** Adopt a single canonical DEC-NNN schema based on the Project-Instructions version, with three reconciliations: (1) Outcome and Lesson Learned are separate fields; (2) AI disposition is a tri-state (Accepted / Modified / Rejected / N/A) rather than a single boolean; (3) Status includes Superseded with an optional `Supersedes` link. IDs use a per-project prefix (registered: AISDLC, DIS, REVIQO, OOPTW). Outcome and Lesson Learned are expected-empty until implementation / Reflect.
-- **Alternatives Considered:** (a) Keep the leaner six-field Context-Doc set — rejected: lacks the metadata that cross-project analytics and automated ingestion need. (b) Merge Outcome into Lesson Learned — rejected: severs the "what happened → what was learned" traceability that Phase 6 / P-001 depend on.
+- **Alternatives Considered:** (a) Keep the leaner six-field Context-Doc set — rejected: lacks the metadata that cross-project analytics and automated ingestion need. (b) Merge Outcome into Lesson Learned — rejected: severs the "what happened → what was learned" traceability that Phase 8 / P-001 depend on.
 - **Consequences:** Enables cross-project post-mortem analytics and lets decisions feed *forward* into Code Briefs (DEC-AISDLC-002). Costs one extra field per entry and requires updating Context Document §5 to match — an A-hygiene item before the first public tag. *(Authorship convention later amended by DEC-AISDLC-006.)*
 - **Outcome:** — pending
 - **Lesson Learned:** — pending
@@ -244,6 +244,96 @@ This document is the running record of the significant engineering decisions mad
 - **Lesson Learned:** — pending
 ---
 
+## DEC-AISDLC-013 — Lifecycle is a Template Method (phases + voidable elements)
+
+- **Project:** AI-SDLC Framework
+- **Status:** Accepted
+- **Decided by:** Jorge Valenzuela
+- **Drafted by:** Claude
+- **Date:** 2026-06-07
+- **AI Suggested:** Y
+- **AI Suggestion Disposition:** Accepted
+- **Context:** The v2026-04 model ("7 phases; phases 0 and 3 happen once") didn't capture how iterations actually flex, and let work disappear silently. Needed a structure that keeps SE discipline (P-003) while letting iterations right-size.
+- **Decision:** Model the lifecycle as a **Template Method**, two levels. *Phases* = a fixed, ordered, always-traversed skeleton (the coupled core). *Elements* = steps inside a phase that an iteration may **void**. Voiding is a *state* (considered → justified → approved → recorded) producing a **voided artifact**, never a silent skip. A phase's floor is a justified voided artifact, so no phase is ever silently absent.
+- **Alternatives Considered:** (a) Keep the "happens once" model — rejected: hides iteration reality, enables silent skips. (b) Allow whole phases to be skipped — rejected: breaks the coupled core (the "Scrum without retros" failure).
+- **Consequences:** Right-sizing without losing discipline; every non-action becomes data (P-002). Small recording cost per void. Requires the 4-field voided-artifact template. The Template Method framing is Jorge's; the voiding mechanics were drafted by Claude.
+- **Outcome:** — pending
+- **Lesson Learned:** — pending
+
+---
+
+## DEC-AISDLC-014 — Phase-vs-element criterion is coupling to the loop
+
+- **Project:** AI-SDLC Framework
+- **Status:** Accepted
+- **Decided by:** Jorge Valenzuela
+- **Drafted by:** Claude
+- **Date:** 2026-06-07
+- **AI Suggested:** Y
+- **AI Suggestion Disposition:** Modified
+- **Context:** With phases and elements distinguished, a stated rule was needed so phase-vs-element calls stay consistent across the ecosystem (P-017), not ad hoc.
+- **Decision:** The cut is *coupling*, not importance. A **phase** is a guaranteed checkpoint every iteration traverses (cannot be declared "not needed"); an **element** is a conditional step an iteration may find unneeded and void. *Test:* must every iteration stop here? → phase. Might an iteration skip it as unneeded? → element.
+- **Alternatives Considered:** Claude's first criterion — "a phase must never be silently absent" — rejected: voided elements also leave records, so it failed to separate the two. Jorge supplied coupling in its place (P-018 in practice).
+- **Consequences:** A reusable test; decided Testing, Project Configuration, and Deployment the same way (DEC-AISDLC-015).
+- **Outcome:** — pending
+- **Lesson Learned:** — pending
+
+---
+
+## DEC-AISDLC-015 — Canonical phase sequence locked (0–8)
+
+- **Project:** AI-SDLC Framework
+- **Status:** Accepted
+- **Decided by:** Jorge Valenzuela
+- **Drafted by:** Claude
+- **Date:** 2026-06-07
+- **AI Suggested:** Y
+- **AI Suggestion Disposition:** Modified
+- **Context:** Apply DEC-AISDLC-014 to settle the full sequence and right-size phase names.
+- **Decision:** Lock phases **0–8**: 0 Vision · 1 Requirements · 2 Design · 3 **Project Configuration** · 4 Development · 5 **Testing** · 6 Release · 7 **Deployment/DevOps** · 8 **Reflect**. Specifics: (a) "Setup" → **Project Configuration**, a phase with elements *setup* (once) + *reconfiguration* (on new req/design); (b) Testing splits — unit testing is an element of Development, integration/system is its own phase (5); (c) Deployment/DevOps added as Phase 7, Claude-drafted and Jorge-approved, with verify-later flags; (d) **Reflect reinstated** as Phase 8 (post-mortem; where principles graduate, §6).
+- **Alternatives Considered:** (a) Monolithic "Testing" phase — rejected per DEC-AISDLC-014. (b) Leaving Reflect dropped — rejected: orphans §6 graduation and is itself the silent-skip failure. (c) Setup as scaffold-once only — rejected: misses ongoing reconfiguration.
+- **Consequences:** FRAMEWORK §2 grows from 7 to 9 phases; §6 re-anchors to Reflect (now Phase 8). Deployment specifics pending practitioner verification — strategy (#3), observability (#6), rollback (#7). Retires the v2026-04 7-phase model (no prior DEC to supersede — it predates this log). Provenance: the Testing split and Deployment draft came from Claude; Project Configuration naming from Jorge; the dropped Reflect phase was caught by Claude and reinstated by Jorge.
+- **Outcome:** — pending
+- **Lesson Learned:** — pending
+
+---
+
+## DEC-AISDLC-016 — Adopt P-021; revert "Credit Follows Origination" to unnumbered
+
+- **Project:** AI-SDLC Framework
+- **Status:** Accepted
+- **Decided by:** Jorge Valenzuela
+- **Drafted by:** Claude
+- **Date:** 2026-06-07
+- **AI Suggested:** N
+- **AI Suggestion Disposition:** N/A
+- **Context:** While defining the framework's own terms, a definition discipline recurred and met the graduation bar (§6). A provisional "P-021" label was sitting on a still-parked candidate.
+- **Decision:** Adopt **P-021 — Define by the Whole Boundary**. Revert **"Credit Follows Origination"** to an unnumbered parked candidate (candidates hold no number until adopted).
+- **Alternatives Considered:** Keep P-021 reserved for Credit — rejected: Credit isn't adopted, and numbers are for adopted principles only.
+- **Consequences:** PRINCIPLES.md now 21 principles; index, §3, count, and parked note updated. P-021 placed in §3 (movable — section is a reading aid). The principle originates in Jorge's teaching/definition methodology; Claude named and drafted it and flagged the labeling inconsistency.
+- **Outcome:** — pending
+- **Lesson Learned:** — pending
+
+---
+
+## DEC-AISDLC-017 — Ecosystem vocabulary: accountability, responsibility, voided artifact
+
+- **Project:** AI-SDLC Framework
+- **Status:** Accepted
+- **Decided by:** Jorge Valenzuela
+- **Drafted by:** Claude
+- **Date:** 2026-06-07
+- **AI Suggested:** Y
+- **AI Suggestion Disposition:** Accepted
+- **Context:** AI-SDLC used "accountability/responsibility" loosely; P-019's `Decided by` / `Drafted by` split needed grounding terms. Defined by the whole boundary (P-021).
+- **Decision:** Add a FRAMEWORK **Glossary** defining **accountability** (a named human answers; never the AI), **responsibility** (the duty to do/produce; human or AI), and **voided artifact** (the justified record of a deliberate non-action). Each carries is / is-not / confused-with / how-to-tell. Example & non-example rows are optional (nullable) and filled as the framework matures.
+- **Alternatives Considered:** Require example/non-example for every term now — rejected: premature; made optional.
+- **Consequences:** Grounds P-019 — Claude is *responsible* (`Drafted by`), the approving human is *accountable* (`Decided by`). Glossary section added to FRAMEWORK.md. Definitions drafted by Claude from Jorge's distinctions.
+- **Outcome:** — pending
+- **Lesson Learned:** — pending
+
+---
+
 ## Glossary
 
 - **DEC-NNN** — a single decision record; NNN is a per-project, zero-padded sequence (e.g., `AISDLC-001`).
@@ -252,8 +342,8 @@ This document is the running record of the significant engineering decisions mad
 - **DIS** — Decision Intelligence System, the companion app that stores and analyzes these decisions.
 - **SOLID** — the five object-oriented design principles checked in the P-013 design audit.
 - **Code Brief** — the per-iteration bundle handed to Claude Code as the Phase 2 → Phase 4 prompt (see DEC-AISDLC-002).
-- **Phases referenced** — Phase 2 (Design), Phase 4 (Development / implementation), Phase 6 (Reflect).
+- **Phases referenced** — Phase 2 (Design), Phase 4 (Development / implementation), Phase 8 (Reflect).
 
 ---
 
-*AI-SDLC Framework · `docs/DECISIONS.md` · v0.1.0 · Maintained in DEC-NNN format per DEC-AISDLC-001, as amended by DEC-AISDLC-006*
+*AI-SDLC Framework · `docs/DECISIONS.md` · v0.2.0 · Maintained in DEC-NNN format per DEC-AISDLC-001, as amended by DEC-AISDLC-006*

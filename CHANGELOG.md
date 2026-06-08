@@ -3,21 +3,36 @@
 All notable changes to the AI-SDLC Framework are documented here. Format follows [Keep a Changelog](https://keepachangelog.com); versioning follows [SemVer](https://semver.org).
 
 ## [Unreleased]
-- Extended the DEC-NNN schema: added a `Deferred` status and an `Amends` relation distinct from `Supersedes`; corrected DEC-006's link to `Amends` (DEC-AISDLC-012).
+
+## [0.2.0] — 2026-06-07
 
 ### Added
+- Lifecycle model: **Template Method** with two levels — always-traversed *phases* and voidable *elements* (FRAMEWORK §2).
+- **Voiding as a state** (considered → justified → approved → recorded) with a 4-field **voided-artifact** template; the **phase floor** (no phase is ever silently absent).
+- **Phase-vs-element rule** — coupling to the loop is the cut (FRAMEWORK §2).
+- **Project Configuration** phase (Phase 3): elements *setup* + *reconfiguration*.
+- **Testing** phase (Phase 5): integration + system.
+- **Deployment / DevOps** phase (Phase 7), with verify-later flags on strategy, observability, and rollback.
+- Principle **P-021 — Define by the Whole Boundary**.
+- **Glossary** (FRAMEWORK): accountability, responsibility, voided artifact — example/non-example rows optional.
 - Requirement-admission bar in `FRAMEWORK.md` §4 — necessity is checked when a requirement enters the SRS, not as a quality attribute; deliberate IEEE 29148 divergence (DEC-AISDLC-011).
-
-### Changed
-- Reworded the Traceable quality criterion to be bidirectional — origin plus a forward-traceable ID (DEC-AISDLC-011).
-
-### Added
 - Principle-graduation criterion in `FRAMEWORK.md` §6 — the bar a candidate clears to become a numbered principle (DEC-AISDLC-008).
 - Four principles promoted from candidate to adopted: P-017, P-018, P-019, P-020 (DEC-AISDLC-009).
+- Decisions **DEC-AISDLC-013 … 017**.
 
 ### Changed
+- Phase model reworked: phases are **traversed every iteration and right-sized**, replacing "phases 0 and 3 happen once." Canonical sequence **locked at 0–8**.
+- **"Setup" renamed to Project Configuration.**
+- **Testing split**: unit testing is now an element of Development; integration/system is its own phase.
+- **Reflect** is now **Phase 8** (post-mortem; where principles graduate).
+- PRINCIPLES count **20 → 21**.
+- Reworded the Traceable quality criterion to be bidirectional — origin plus a forward-traceable ID (DEC-AISDLC-011).
 - Reorganized `PRINCIPLES.md` into a chronological index plus seven thematic sections (DEC-AISDLC-010).
 - Generalized the wording of P-006, P-009, P-010, and P-011 beyond their original domains (DEC-AISDLC-010).
+- Extended the DEC-NNN schema: added a `Deferred` status and an `Amends` relation distinct from `Supersedes`; corrected DEC-006's link to `Amends` (DEC-AISDLC-012).
+
+### Reverted
+- **"Credit Follows Origination"** reverted from its provisional `P-021` label to an unnumbered parked candidate.
 
 ## [0.1.1] — 2026-06-05
 
@@ -44,4 +59,6 @@ Initial public working draft (build-in-public).
 - Candidate principles P-017 (Consistency Across the Ecosystem), P-018 (Evaluation Is the Scarce Skill), and P-019 (Keep the Human Visible) are recorded in `docs/DECISIONS.md` and slated for adoption in v0.2.0.
 - Branch topology revision (DEC-AISDLC-004) and the "Necessary" requirements criterion are deferred to v0.2.0.
 
+[0.2.0]: https://github.com/jorgevalenzuela/ai-sdlc/releases/tag/v0.2.0
+[0.1.1]: https://github.com/jorgevalenzuela/ai-sdlc/releases/tag/v0.1.1
 [0.1.0]: https://github.com/jorgevalenzuela/ai-sdlc/releases/tag/v0.1.0

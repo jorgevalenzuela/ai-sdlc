@@ -6,7 +6,7 @@ These principles were extracted from real project experience, not designed upfro
 
 > Throughout, **significant** is what the engineer, manager, or team judges significant — the framework sets no universal bar (DEC-AISDLC-005).
 
-> **Parked candidates** (not yet adopted; maturing per P-001): **P-021 "Credit Follows Origination"** and a possible **tiering of guidance into rules / principles / guidelines** (firm → advisory) — both tracked in `BACKLOG.md`, left for a future version.
+> **Parked candidates** (not yet adopted; maturing per P-001): **"Credit Follows Origination"** and a possible **tiering of guidance into rules / principles / guidelines** (firm → advisory) — both tracked in `BACKLOG.md`, left for a future version. *(Candidates hold no number until adopted; "Credit" previously carried a provisional P-021 label, now reassigned.)*
 
 ---
 
@@ -34,6 +34,7 @@ These principles were extracted from real project experience, not designed upfro
 | P-018 | Evaluation Is the Scarce Skill | The human–AI stance |
 | P-019 | Keep the Human Visible | Decisions & memory |
 | P-020 | Pacing Is the Human's Job | The human–AI stance |
+| P-021 | Define by the Whole Boundary | Working through artifacts |
 
 ---
 
@@ -90,6 +91,10 @@ Anyone can tell AI what they want in plain language. AI-SDLC is about what happe
 ### P-013 — Design Artifacts Are Subjects for Automated Quality Auditing
 A class diagram or data model can be evaluated for coupling, cohesion, and SOLID compliance before a single line of code is written. Catch design problems before they become code problems.
 *Origin: Jorge's insight about auditing designs against SOLID principles before coding.*
+
+### P-021 — Define by the Whole Boundary
+Define a concept by its whole boundary, not just its center: what it *is* and what it *is not*, with examples and non-examples, the things it's confused with, and how to tell. A concept defined only by what it is leaves its edges fuzzy and gets misapplied — understanding, and good design, live at the boundary.
+*Origin: Jorge's teaching and definition methodology, named while defining the framework's own terms — accountability, responsibility, and the voided artifact.*
 
 ---
 
@@ -163,4 +168,4 @@ If you build a tool that enforces good practices, use it yourself first. The fir
 
 ---
 
-*AI-SDLC Framework · `PRINCIPLES.md` · v0.2.0 · 20 principles, 7 sections · numbers chronological, sections thematic*
+*AI-SDLC Framework · `PRINCIPLES.md` · v0.2.0 · 21 principles, 7 sections · numbers chronological, sections thematic*
